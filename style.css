@@ -13,18 +13,26 @@ h1 {
 #container-calc {
 	display: flex;
 	flex-direction: column;
-	width: 300px;
-	height: 600px;
 	background-color:lightgrey;
+	border: solid black;
+	width: 200px;
+	height: auto;
 }
 
 #display-calc {
 	background-color: grey;
 	color: black;
+	border: solid black;
 	text-align: right;
 	padding: 10px;
 }
 
 #button-grid {
 	display: grid;
+	grid-template-rows: repeat(4, 1fr);
+	grid-template-columns: repeat(4,1fr);
+}
+
+.keys {
+	border: solid black;
 }
