@@ -62,27 +62,26 @@ function arrayTranscription(arr) {
 	let number1 = [];
 	let result;
 	for (i of arr) {
-		if (+i) {
-			number1.push(i);
-		} else {
-			switch (i) {
-				case '+':
-					result = operate(add, +(number1.join('')),
-						+(arr.slice(arr.indexOf(i)+1).join('')));
-					return result;
-				case '-':
-					result = operate(subtract, +(number1.join('')),
-						+(arr.slice(arr.indexOf(i)+1).join('')));
-					return result;
-				case '*':
-					result = operate(multiply, +(number1.join('')),
-						+(arr.slice(arr.indexOf(i)+1).join('')));
-					return result;
-				case '/':
-					result = operate(divide, +(number1.join('')),
-						+(arr.slice(arr.indexOf(i)+1).join('')));
-					return result;
-			}
+		switch (i) {
+			case '+':
+				result = operate(add, +(number1.join('')),
+					+(arr.slice(arr.indexOf(i)+1).join('')));
+				return result;
+			case '-':
+				result = operate(subtract, +(number1.join('')),
+					+(arr.slice(arr.indexOf(i)+1).join('')));
+				return result;
+			case '*':
+				result = operate(multiply, +(number1.join('')),
+					+(arr.slice(arr.indexOf(i)+1).join('')));
+				return result;
+			case '/':
+				result = operate(divide, +(number1.join('')),
+					+(arr.slice(arr.indexOf(i)+1).join('')));
+				return result;
+			default:
+				number1.push(i);
+				continue;
 		}
 	}
 }
