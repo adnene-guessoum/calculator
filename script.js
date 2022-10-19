@@ -30,8 +30,64 @@ const keys = document.querySelectorAll(".keys");
 const keyPress = keys.forEach(
 	key => key.addEventListener(
 		'click', function(e) {
-			operationArray.push(e.target.id);
-			display.innerText = operationArray.join('');	
-			console.log(operationArray);
-}));
+			switch (e.target.id) {
+				case 'operate':
+					console.log(arrayTranscription(operationArray));
+					display.innerText = arrayTranscription(operationArray);	
+					console.log(operationArray);
+					operationArray.length = 0;
+					console.log(operationArray);
+					return operationArray;
+				case 'clear':
+					operationArray.length = 0;
+					display.innerText = operationArray.join('');	
+					console.log(operationArray);
+					return operationArray;
+				default:
+					operationArray.push(e.target.id);
+					display.innerText = operationArray.join('');	
+					console.log(operationArray);
+			}
+		}));
 
+//make the calls to the right functions in order to compute:
+
+
+
+function arrayTranscription(arr) {
+	if (arr.length === 0) {
+		return "Enter something"
+	}
+
+	let number1 = [];
+	let result;
+	for (i of arr) {
+		if (+i) {
+			number1.push(i);
+		} else {
+			switch (i) {
+				case '+':
+					result = operate(add, +(number1.join('')),
+						+(arr.slice(arr.indexOf(i)+1).join('')));
+					return result;
+				case '-':
+					result = operate(subtract, +(number1.join('')),
+						+(arr.slice(arr.indexOf(i)+1).join('')));
+					return result;
+				case '*':
+					result = operate(multiply, +(number1.join('')),
+						+(arr.slice(arr.indexOf(i)+1).join('')));
+					return result;
+				case '/':
+					result = operate(divide, +(number1.join('')),
+						+(arr.slice(arr.indexOf(i)+1).join('')));
+					return result;
+			}
+		}
+	}
+}
+/*
+console.log(arrayTranscription(operationArray));
+display.innerText = arrayTranscription(operationArray);	
+console.log(operationArray);
+*/

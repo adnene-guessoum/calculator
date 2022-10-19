@@ -39,6 +39,3 @@ h1 {
 	border: solid black;
 }
 
-#clear {
-	grid-column: 3 / -1;
-}
