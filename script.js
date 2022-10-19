@@ -87,7 +87,7 @@ const keyPress = keys.forEach(
 					operationArray.push(e.target.id);
 					const functions = [add,subtract,multiply,divide];
 					if (functions.some(el => operationArray.includes(el))) {
-						display.innerText = operationArray.slice(2).join("");
+						display.innerText = display.innerText + " " + operationArray.slice(2).join("");
 					} else {
 						display.innerText = operationArray.join("")
 					}
