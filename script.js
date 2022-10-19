@@ -1,7 +1,7 @@
 // basic calc functions
 
 function add(a, b) {
-	return a+b;
+	return (+a) + (+b);
 };
 
 function subtract(a, b) {
@@ -24,29 +24,74 @@ function operate(operator, a, b){
 const display = document.querySelector("#display-calc");
 
 const operationArray = [];
-
+let number;
+let result;
 const keys = document.querySelectorAll(".keys");
 
 const keyPress = keys.forEach(
 	key => key.addEventListener(
 		'click', function(e) {
+
+			if (operationArray.length === 3) {
+				result = operate(operationArray[1], operationArray[0], operationArray[2]);
+				operationArray.length = 0;
+				operationArray.push(result);
+				display.innerText = operationArray[0];
+			}
+			
 			switch (e.target.id) {
 				case 'operate':
-					console.log(arrayTranscription(operationArray));
-					display.innerText = arrayTranscription(operationArray);	
-					console.log(operationArray);
+					display.innerText = operationArray[0];	
 					operationArray.length = 0;
-					console.log(operationArray);
 					return operationArray;
+
 				case 'clear':
 					operationArray.length = 0;
 					display.innerText = operationArray.join('');	
-					console.log(operationArray);
 					return operationArray;
+
+				case '+':
+					number = +(operationArray.join(""));
+					display.innerText = number + ' ' + e.target.id;	
+					operationArray.length = 0;
+					operationArray.push(number);
+					operationArray.push(add);
+					return operationArray;
+
+				case '-':
+					number = +(operationArray.join(""));
+					display.innerText = number + ' ' + e.target.id;	
+					operationArray.length = 0;
+					operationArray.push(number);
+					operationArray.push(subtract);
+					return operationArray;
+
+
+				case '*':
+					number = +(operationArray.join(""));
+					display.innerText = number + ' ' + e.target.id;	
+					operationArray.length = 0;
+					operationArray.push(number);
+					operationArray.push(multiply);
+					return operationArray;
+
+				case '/':
+					number = +(operationArray.join(""));
+					display.innerText = number + ' ' + e.target.id;	
+					operationArray.length = 0;
+					operationArray.push(number);
+					operationArray.push(divide);
+					return operationArray;
+
 				default:
 					operationArray.push(e.target.id);
-					display.innerText = operationArray.join('');	
-					console.log(operationArray);
+					const functions = [add,subtract,multiply,divide];
+					if (functions.some(el => operationArray.includes(el))) {
+						display.innerText = operationArray.slice(2).join("");
+					} else {
+						display.innerText = operationArray.join("")
+					}
+					return operationArray;
 			}
 		}));
 
@@ -55,12 +100,18 @@ const keyPress = keys.forEach(
 
 
 function arrayTranscription(arr) {
-	if (arr.length === 0) {
-		return "Enter something"
-	}
 
 	let number1 = [];
 	let result;
+	const operators = ["+","-", "*", "/"]
+
+	if (!(operators.some(el => arr.includes(el)))) {
+		for (i of arr){
+			number1.push(i)
+		}
+		return number1;
+	}
+
 	for (i of arr) {
 		switch (i) {
 			case '+':
