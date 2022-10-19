@@ -14,18 +14,23 @@ h1 {
 	display: flex;
 	flex-direction: column;
 	background-color:lightgrey;
-	border: solid black;
+	border: solid brown 20px;
 	width: 300px;
 	height: 500px;
 }
 
-#display-calc {
+.display-container {
+	display: flex;
+	flex-direction: column;
+	border: solid black;
+	height: 100px;
+}
+
+#display-calc , #display-res {
 	flex: 1 1 auto;
 	background-color: grey;
 	color: black;
-	border: solid black;
 	text-align: right;
-	padding: 10px;
 }
 
 #button-grid {
@@ -39,3 +44,14 @@ h1 {
 	border: solid black;
 }
 
+.corrections {
+	display: flex;
+	align-items: center;
+	border: solid black;
+	height: 40px;
+	align-items: stretch;
+}
+
+#del, #clear {
+	flex: 1 1 auto;
+}

@@ -22,6 +22,7 @@ function operate(operator, a, b){
 
 // function populating the calc display
 const display = document.querySelector("#display-calc");
+const displayRes = document.querySelector("#display-res");
 
 const operationArray = [];
 let number;
@@ -36,18 +37,20 @@ const keyPress = keys.forEach(
 				result = operate(operationArray[1], operationArray[0], operationArray[2]);
 				operationArray.length = 0;
 				operationArray.push(result);
-				display.innerText = operationArray[0];
+				displayRes.innerText = result;
 			}
 			
 			switch (e.target.id) {
 				case 'operate':
-					display.innerText = operationArray[0];	
+					displayRes.innerText = result;
 					operationArray.length = 0;
 					return operationArray;
 
 				case 'clear':
 					operationArray.length = 0;
+					result = 0;
 					display.innerText = operationArray.join('');	
+					displayRes.innerText = result;
 					return operationArray;
 
 				case '+':
