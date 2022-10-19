@@ -24,16 +24,22 @@ function operate(operator, a, b){
 const display = document.querySelector("#display-calc");
 const displayRes = document.querySelector("#display-res");
 
-const operationArray = [];
+let operationArray = [];
 let number;
 let result;
 const keys = document.querySelectorAll(".keys");
+const functions = [add,subtract,multiply,divide];
+const functionsId = ["+", "-", "*", "/", "operate"];
 
 const keyPress = keys.forEach(
 	key => key.addEventListener(
 		'click', function(e) {
 
-			if (operationArray.length === 3) {
+			if (operationArray.length >= 3 && functionsId.includes(e.target.id)) {
+
+				number = +(operationArray.slice(2).join(""));
+				operationArray = operationArray.slice(0,2);
+				operationArray.push(number);
 				result = operate(operationArray[1], operationArray[0], operationArray[2]);
 				operationArray.length = 0;
 				operationArray.push(result);
@@ -69,7 +75,6 @@ const keyPress = keys.forEach(
 					operationArray.push(subtract);
 					return operationArray;
 
-
 				case '*':
 					number = +(operationArray.join(""));
 					display.innerText = number + ' ' + e.target.id;	
@@ -86,11 +91,15 @@ const keyPress = keys.forEach(
 					operationArray.push(divide);
 					return operationArray;
 
+				case '.':
+					operationArray.push(e.target.id);
+					display.innerText = display.innerText + e.target.id;
+					return operationArray;
+
 				default:
 					operationArray.push(e.target.id);
-					const functions = [add,subtract,multiply,divide];
 					if (functions.some(el => operationArray.includes(el))) {
-						display.innerText = display.innerText + " " + operationArray.slice(2).join("");
+						display.innerText =  operationArray.slice(2).join("");
 					} else {
 						display.innerText = operationArray.join("")
 					}
