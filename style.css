@@ -15,8 +15,8 @@ h1 {
 	flex-direction: column;
 	background-color:lightgrey;
 	border: solid brown 20px;
-	width: 300px;
-	height: 500px;
+	width: 500px;
+	height: 800px;
 }
 
 .display-container {
@@ -24,17 +24,29 @@ h1 {
 	flex-direction: column;
 	border: solid black;
 	height: 100px;
+	flex: 1 1 auto;
+	background-color: #b2b9b7;
 }
 
 #display-calc , #display-res {
-	flex: 1 1 auto;
-	background-color: grey;
+	flex: 1 0 auto;
+	background-color: #b2b9b7;
 	color: black;
 	text-align: right;
+	display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: flex-end;
+    padding: 5px;
+    font-size: 2.5em;
+    font-weight: initial;
+    text-shadow: 1.3px 1.3px #383838;
+    margin: 5px;
+	
 }
 
 #button-grid {
-	flex: 10 1 auto;	
+	flex: 7 1 auto;	
 	display: grid;
 	grid-template-rows: repeat(4, 1fr);
 	grid-template-columns: repeat(4,1fr);
@@ -42,16 +54,27 @@ h1 {
 
 .keys {
 	border: solid black;
+	font-size:1.5em;
+	background-color: #c7e3e7;
 }
 
 .corrections {
 	display: flex;
 	align-items: center;
 	border: solid black;
-	height: 40px;
+	height: 80px;
 	align-items: stretch;
 }
 
 #del, #clear {
 	flex: 1 1 auto;
+}
+
+#clear {
+	background-color: #c3b8cb;
+}
+#del {
+	background-color: #f1f1ad;
+	
+	
 }

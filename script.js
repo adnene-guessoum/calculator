@@ -26,7 +26,6 @@ const displayRes = document.querySelector("#display-res");
 
 let operationArray = [];
 let operation = [];
-let number;
 let result;
 const keys = document.querySelectorAll(".keys");
 const functions = [add,subtract,multiply,divide];
