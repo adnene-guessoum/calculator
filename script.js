@@ -23,6 +23,7 @@ function operate(operator, a, b){
 // function populating the calc display
 const display = document.querySelector("#display-calc");
 const displayRes = document.querySelector("#display-res");
+const dotBtn = document.querySelector("#\\.");
 
 let operationArray = [];
 let operation = [];
@@ -60,6 +61,7 @@ const keyPress = keys.forEach(
 				case 'operate':
 					display.innerText = "";
 					operationArray.length = 0;
+					dotBtn.disabled = false;
 					return operationArray;
 
 				case 'clear':
@@ -67,6 +69,7 @@ const keyPress = keys.forEach(
 					result = 0;
 					display.innerText = operationArray.join('');	
 					displayRes.innerText = result;
+					dotBtn.disabled = false;
 					return operationArray;
 
 				case 'del':
@@ -78,28 +81,33 @@ const keyPress = keys.forEach(
 
 					display.innerText = display.innerText + ' ' + e.target.id + ' ' ;
 					operationArray.push(add);
+					dotBtn.disabled = false;
 					return operationArray;
 
 				case '-':
 
 					display.innerText = display.innerText + ' ' + e.target.id + ' ' ;
 					operationArray.push(subtract);
+					dotBtn.disabled = false;
 					return operationArray;
 
 				case '*':
 
 					display.innerText = display.innerText + ' ' + e.target.id + ' ' ;
 					operationArray.push(multiply);
+					dotBtn.disabled = false;
 					return operationArray;
 
 				case '/':
 					display.innerText = display.innerText + ' ' + e.target.id + ' ' ;
 					operationArray.push(divide);
+					dotBtn.disabled = false;
 					return operationArray;
 
 				case '.':
 					operationArray.push(e.target.id);
 					display.innerText = display.innerText + e.target.id;
+					dotBtn.disabled = true;
 					return operationArray;
 
 				default:
